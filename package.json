@@ -1,0 +1,17 @@
+{
+  "name": "apitester",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "big.js": "^6.1.1",
+    "got": "^12.0.0",
+    "redis": "^4.0.0"
+  }
+}
