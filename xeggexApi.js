@@ -1,6 +1,6 @@
 /*
 	Xeggex API Class for NodeJS
-	version: 0.1.0
+	version: 0.1.1
 */
 
 import got from 'got';
@@ -37,7 +37,196 @@ class xeggexApi {
 		
 		return this;
 	}
-	
+
+    getHistoricalTrades(ticker, limit)
+    {
+
+        return new Promise((resolve, reject) => {
+        
+        	(async () => {
+
+				try {
+            		const response = await got.get(`historical_trades?ticker_id=${ticker}&limit=${limit}`, this.options).json();
+					resolve(response);
+				} catch (e) {
+                    reject(e);
+                }
+            
+            })();
+            
+        });
+
+    }
+    
+    getMarkets()
+    {
+
+        return new Promise((resolve, reject) => {
+        
+        	(async () => {
+
+				try {
+            		const response = await got.get('market/getlist', this.options).json();
+					resolve(response);
+				} catch (e) {
+                    reject(e);
+                }
+            
+            })();
+            
+        });
+
+    }
+
+    getMarket(symbol)
+    {
+
+        return new Promise((resolve, reject) => {
+        
+        	(async () => {
+        	
+        		const encodedSymbol = encodeURIComponent(symbol);
+
+
+				try {
+            		const response = await got.get('market/getbysymbol/' + encodedSymbol, this.options).json();
+					resolve(response);
+				} catch (e) {
+                    reject(e);
+                }
+            
+            })();
+            
+        });
+
+    }
+
+    getMarketById(marketId)
+    {
+
+        return new Promise((resolve, reject) => {
+        
+        	(async () => {
+
+				try {
+            		const response = await got.get('market/getbyid/' + marketId, this.options).json();
+					resolve(response);
+				} catch (e) {
+                    reject(e);
+                }
+            
+            })();
+            
+        });
+
+    }
+    
+    getAssets()
+    {
+
+        return new Promise((resolve, reject) => {
+        
+        	(async () => {
+
+				try {
+            		const response = await got.get('asset/getlist', this.options).json();
+					resolve(response);
+				} catch (e) {
+                    reject(e);
+                }
+            
+            })();
+            
+        });
+
+    }
+
+    getAsset(ticker)
+    {
+
+        return new Promise((resolve, reject) => {
+        
+        	(async () => {
+        	
+        		const encodedTicker = encodeURIComponent(ticker);
+
+
+				try {
+            		const response = await got.get('asset/getbyticker/' + encodedTicker, this.options).json();
+					resolve(response);
+				} catch (e) {
+                    reject(e);
+                }
+            
+            })();
+            
+        });
+
+    }
+
+    getAssetById(assetId)
+    {
+
+        return new Promise((resolve, reject) => {
+        
+        	(async () => {
+
+				try {
+            		const response = await got.get('asset/getbyid/' + assetId, this.options).json();
+					resolve(response);
+				} catch (e) {
+                    reject(e);
+                }
+            
+            })();
+            
+        });
+
+    }
+    
+    getOrderBookBySymbol(symbol)
+    {
+
+        return new Promise((resolve, reject) => {
+        
+        	(async () => {
+        	
+        		const encodedSymbol = encodeURIComponent(symbol);
+
+
+				try {
+            		const response = await got.get('market/getorderbookbysymbol/' + encodedSymbol, this.options).json();
+					resolve(response);
+				} catch (e) {
+                    reject(e);
+                }
+            
+            })();
+            
+        });
+
+    }
+
+    getOrderBookByMarketId(marketId)
+    {
+
+        return new Promise((resolve, reject) => {
+        
+        	(async () => {
+
+				try {
+            		const response = await got.get('market/getorderbookbymarketid/' + marketId, this.options).json();
+					resolve(response);
+				} catch (e) {
+                    reject(e);
+                }
+            
+            })();
+            
+        });
+
+    }
+    
     getBalances()
     {
 
@@ -163,6 +352,26 @@ class xeggexApi {
 
 				try {
             		const response = await got.post('cancelorder', {...this.options, json: {id: orderid}}).json();
+					resolve(response);
+				} catch (e) {
+                    reject(e);
+                }
+            
+            })();
+            
+        });
+
+    }
+
+    cancelAllOrders(symbol, side)
+    {
+
+        return new Promise((resolve, reject) => {
+        
+        	(async () => {
+
+				try {
+            		const response = await got.post('cancelallorders', {...this.options, json: {symbol: symbol, side: side}}).json();
 					resolve(response);
 				} catch (e) {
                     reject(e);
