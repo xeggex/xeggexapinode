@@ -11,7 +11,7 @@ class xeggexApi {
 	constructor(apiKey = null, apiSecret = null, apiURL) 
 	{
 		if (apiURL === void 0)
-			this.apiURL = 'https://xeggex.com/api/v2';
+			this.apiURL = 'https://api.xeggex.com/api/v2';
 		else
 			this.apiURL = apiURL;
 	
